@@ -1,0 +1,20 @@
+{
+	"identifier": "com.telenet.app.firstapp",
+	"name": "First Application",
+	"version": "0.0.1",
+	"author": "Jens Luz",
+	"company": "Telenet",
+	"copyright": "Metrological Widgets 2014",
+	"description": "A clean App structure",
+	"categories": [
+		"video"
+	],
+	"scripts": "Javascript/init.js",
+	"images": {
+		"about": "Images/Icon.png",
+		"icon": {
+			"192x192": "Images/test-icon.png"
+
+		}
+	}
+}
