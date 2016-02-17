@@ -4,7 +4,8 @@ var MainView = new MAF.Class({
 	Extends: MAF.system.SidebarView,
 
 	initialize: function () {
-		this.parent();
+		var view = this;
+		view.parent();
 	},
 
 	createView: function () {
@@ -18,7 +19,7 @@ var MainView = new MAF.Class({
 			anchorStyle: 'center'
 		}
 	}).appendTo(view);
-},
+	},
 
 	updateView: function () {
 
