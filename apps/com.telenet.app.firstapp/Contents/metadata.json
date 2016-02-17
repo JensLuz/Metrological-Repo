@@ -1,11 +1,11 @@
 {
-	"identifier": "com.telenet.app.firstapp",
-	"name": "First Application",
+	"identifier": "com.telenet.app.FirstApp",
+	"name": "TV-Shop?",
 	"version": "0.0.1",
-	"author": "Jens Luz",
-	"company": "Telenet",
+	"author": "Metrological Widgets",
+	"company": "Metrological Widgets",
 	"copyright": "Metrological Widgets 2014",
-	"description": "A clean App structure",
+	"description": "Selling Telenet products here",
 	"categories": [
 		"lifestyle"
 	],
@@ -13,8 +13,7 @@
 	"images": {
 		"about": "Images/Icon.png",
 		"icon": {
-			"192x192": "Images/test-icon.png"
-
+			"192x192": "Images/telenet_logo.png"
 		}
 	}
 }

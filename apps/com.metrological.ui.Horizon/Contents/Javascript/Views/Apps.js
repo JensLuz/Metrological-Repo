@@ -315,7 +315,7 @@ var AppsView = new MAF.Class({
 									forceFocus = true;
 								}
 								view.category = category;
-								Horizon.setText('');
+								//Horizon.setText('Check 1');
 								apps.body.freeze();
 								if (view.categoryTimer) {
 									clearTimeout(view.categoryTimer);
@@ -438,9 +438,9 @@ var AppsView = new MAF.Class({
 			guid: 'apps',
 			rows: cellRows,
 			columns: cellColumns,
-			//carousel: true,
+			carousel: true,
 			manageWaitIndicator: false,
-			orientation: 'vertical',
+			orientation: 'horizontal',
 			cellCreator: function () {
 				var cell = new MAF.element.GridCell({
 					styles: Object.merge(this.getCellDimensions(), {

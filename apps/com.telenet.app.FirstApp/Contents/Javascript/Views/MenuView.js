@@ -1,12 +1,11 @@
 // Create a class and extended it from the MAF.system.SidebarView
-var MyView = new MAF.Class({
-	ClassName: 'MyView',
+var MenuView = new MAF.Class({
+	ClassName: 'MenuView',
 
 	Extends: MAF.system.SidebarView,
 
-	// Create your view template
 	createView: function () {
-		// Reference to the current view
+		// Reference to the current view-first view the app will show
 		var view = this;
 	},
 
