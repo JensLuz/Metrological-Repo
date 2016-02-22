@@ -2,68 +2,96 @@ var MainView = new MAF.Class({
 	ClassName: 'MainView',
 
 	Extends: MAF.system.FullscreenView,
+	
+	// Set background color of the view on initialize of the class
+	initialize: function () {
+		var view = this;
+		view.parent(); // Call the super class, in this case the FullscreenView
+		view.setStyle('backgroundColor', 'rgba(0, 0, 0, 0.8)');
+	},
 
-	createView: function () {		// called when view is opent for the first time
-		var view = this,
-		
-		buttons = [
-			{ label: $_('Subscriptions'), view: 'view-SlideCarouselView' },
-			{ label: $_('Redeem Vouchers'), view: 'view-SlideCarouselView' }
-/* 			{ label: $_('Control Grid'), view: 'view-ControlGridView' },
-			{ label: $_('Element Grid'), view: 'view-ElementGridView' },
-			{ label: $_('Horizontal Grid'), view: 'view-HorizontalGridView' },
-			{ label: $_('Vertical Grid'), view: 'view-VerticalGridView' },
-			{ label: $_('Slide Carousel'), view: 'view-SlideCarouselView' } */
-		];
-		
-		var TitleText = new MAF.element.Text({
-			label: $_('TV-Shop'),
-			styles:{
-				width: view.width,
-				height: 100,
-				fontSize: 60,
-				anchorStyle: 'center',
-				color: '#FFBF00'
+	createView: function () {
+		var view = this;
+
+		var backButton = new MAF.control.BackButton({
+			label: $_('BACK'),
+			styles: {
+				width: view.width/8,
+				vOffset: 50,
+				paddingLeft: 50
 			}
 		}).appendTo(view);
 
-		// Create a list of buttons based on an array and
-		// set guid for keeping focus state on previous view
-		buttons.forEach(function (button, i) {
-			// Generate a unqiue name for the view.controls and the guid
-			var id = 'myButton' + i;
-			view.controls[id] = new MAF.control.TextButton({
-				guid: id,
-				theme: false, // Remove default theme
-				label: button.label,
-				styles: {
-					height: 80,
-					width: 400,
-					//vOffset: 150 + (i * 100),
-					//hOffset: (view.width - 400) / 2,
-					hOffset: (view.width) / 2,
-					borderRadius: 10
-				},
-				textStyles: {
-					fontSize: 35,
-					anchorStyle: 'center'
-				},
-				events: {
-					onFocus: function () {
-						this.setStyle('backgroundColor', Theme.getStyles('BaseFocus', 'backgroundColor'));
-					},
-					onBlur: function () {
-						this.setStyle('backgroundColor', null);
-					},
-					onSelect: function (event) {
-						MAF.application.loadView(button.view);
+		var slider = view.elements.slider = new MAF.element.SlideCarousel({
+			visibleCells: 5,
+			focusIndex: 2,
+			slideDuration: 0.2,
+			styles:{
+				width: view.width + 80,
+				height: 300,
+				hOffset: 49,
+				vOffset: view.height - 400
+			},
+			cellCreator: function () {
+				var cell = new MAF.element.SlideCarouselCell({
+					styles: this.getCellDimensions(),
+					events: {
+						onFocus: function () {
+							this.title.animate({
+								duration: 0.2,
+								backgroundColor: Theme.getStyles('BaseFocus', 'backgroundColor')
+							});
+						},
+						onBlur: function(){
+							this.title.animate({
+								duration: 0.2,
+								backgroundColor: 'black'
+							});
+						}
 					}
+				});
+
+				cell.title = new MAF.element.Text({
+					styles: {
+						hAlign: 'center',
+						vAlign: 'center',
+						width: cell.width,
+						height: 100,
+						hOffset: 20,
+						vOffset: 20,
+						color: '#f1f1f1',
+						fontSize: 32,
+						backgroundColor: 'black',
+						paddingTop: 20,
+						paddingLeft: 20
+					}
+				}).appendTo(cell);
+
+				return cell;
+			},
+			cellUpdater: function(cell, data){
+				cell.title.setText(data.title);
+			},
+			events: {
+				onDatasetChanged: function(){
+					this.getCurrentCell().focus();
+					this.animate({
+						opacity: 1,
+						duration: 0.2
+					});
 				}
-			}).appendTo(view);
-		});
+			}
+		}).appendTo(view);
 	},
-	
-	updateView: function () {		// called when view is navigated to (not for the first time)
+
+	// After the update view the focus view is called
+	focusView: function () {
 		var view = this;
+		view.elements.slider.changeDataset([
+			{ title: $_('TV-Gids') },
+			{ title: $_('Subscriptions') },
+			{ title: $_('Budget App') },
+			{ title: $_('Redeem Vouchers') }
+		], true);
 	}
 });

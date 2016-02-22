@@ -62,7 +62,7 @@ var Horizon = (function (body) {
 	}).inject(body);
 
 	var title = new Text({
-		label: $_('APP_STORE'),
+		label: $_('Horizon'),
 		styles: {
 			hOffset: 134,
 			vOffset: 47,
