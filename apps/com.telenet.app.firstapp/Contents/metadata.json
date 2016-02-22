@@ -2,9 +2,9 @@
 	"identifier": "com.telenet.app.FirstApp",
 	"name": "TV-Shop?",
 	"version": "0.0.1",
-	"author": "Metrological Widgets",
-	"company": "Metrological Widgets",
-	"copyright": "Metrological Widgets 2014",
+	"author": "Jens Luz",
+	"company": "Telenet",
+	"copyright": "Telenet 2016",
 	"description": "Selling Telenet products here",
 	"categories": [
 		"lifestyle"
