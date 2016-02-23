@@ -1,8 +1,9 @@
 var MainView = new MAF.Class({
 	ClassName: 'MainView',
 
+	// Extend a FullscreenView instead of SidebarView
 	Extends: MAF.system.FullscreenView,
-	
+
 	// Set background color of the view on initialize of the class
 	initialize: function () {
 		var view = this;
@@ -16,7 +17,6 @@ var MainView = new MAF.Class({
 		var backButton = new MAF.control.BackButton({
 			label: $_('BACK'),
 			styles: {
-				width: view.width/8,
 				vOffset: 50,
 				paddingLeft: 50
 			}
@@ -53,10 +53,8 @@ var MainView = new MAF.Class({
 
 				cell.title = new MAF.element.Text({
 					styles: {
-						hAlign: 'center',
-						vAlign: 'center',
 						width: cell.width,
-						height: 100,
+						height: 300,
 						hOffset: 20,
 						vOffset: 20,
 						color: '#f1f1f1',
@@ -80,7 +78,6 @@ var MainView = new MAF.Class({
 						duration: 0.2
 					});
 				}
-			}
 		}).appendTo(view);
 	},
 
@@ -88,10 +85,12 @@ var MainView = new MAF.Class({
 	focusView: function () {
 		var view = this;
 		view.elements.slider.changeDataset([
-			{ title: $_('TV-Gids') },
-			{ title: $_('Subscriptions') },
-			{ title: $_('Budget App') },
-			{ title: $_('Redeem Vouchers') }
+			{ title: $_('Cell1') },
+			{ title: $_('Cell2') },
+			{ title: $_('Cell3') },
+			{ title: $_('Cell4') },
+			{ title: $_('Cell5') },
+			{ title: $_('Cell6') }
 		], true);
 	}
 });
