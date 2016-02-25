@@ -1,14 +1,13 @@
 var MainView = new MAF.Class({
 	ClassName: 'MainView',
 
-	// Extend a FullscreenView instead of SidebarView
 	Extends: MAF.system.FullscreenView,
 
-	// Set background color of the view on initialize of the class
 	initialize: function () {
 		var view = this;
 		view.parent(); // Call the super class, in this case the FullscreenView
 		view.setStyle('backgroundColor', 'rgba(0, 0, 0, 0.8)');
+		var counter = 0;
 	},
 
 	createView: function () {
@@ -18,13 +17,14 @@ var MainView = new MAF.Class({
 			label: $_('BACK'),
 			styles: {
 				vOffset: 50,
-				paddingLeft: 50
+				paddingLeft: 50,
+				width: 200
 			}
 		}).appendTo(view);
 
 		var slider = view.elements.slider = new MAF.element.SlideCarousel({
 			visibleCells: 5,
-			focusIndex: 2,
+			focusIndex: 3,
 			slideDuration: 0.2,
 			styles:{
 				width: view.width + 80,
@@ -47,6 +47,16 @@ var MainView = new MAF.Class({
 								duration: 0.2,
 								backgroundColor: 'black'
 							});
+						},
+						onSelect: function(){
+							var data = this.getCellDataItem();
+							var available_views = ['view-VerticalGridView','view-HorizontalGridView',
+							'view-ControlGridView','view-SlideCarouselView'];
+							var index = this.getCellDataIndex();
+							var view_ID = available_views[index];
+							MAF.application.loadView(view_ID, {
+							prevData: data
+							});
 						}
 					}
 				});
@@ -54,7 +64,7 @@ var MainView = new MAF.Class({
 				cell.title = new MAF.element.Text({
 					styles: {
 						width: cell.width,
-						height: 300,
+						height: 100,
 						hOffset: 20,
 						vOffset: 20,
 						color: '#f1f1f1',
@@ -78,6 +88,7 @@ var MainView = new MAF.Class({
 						duration: 0.2
 					});
 				}
+			}
 		}).appendTo(view);
 	},
 
@@ -85,12 +96,11 @@ var MainView = new MAF.Class({
 	focusView: function () {
 		var view = this;
 		view.elements.slider.changeDataset([
-			{ title: $_('Cell1') },
-			{ title: $_('Cell2') },
-			{ title: $_('Cell3') },
-			{ title: $_('Cell4') },
-			{ title: $_('Cell5') },
-			{ title: $_('Cell6') }
+			{ title: $_('Subscriptions') },
+			{ title: $_('Vouchers') },
+			{ title: $_('Shopping basket') },
+			{ title: $_('Budget Check') }
 		], true);
 	}
+
 });
